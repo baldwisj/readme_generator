@@ -59,4 +59,5 @@
 
   ## Links
 
-  - ![Watch the Walkthorugh video](#https://drive.google.com/file/d/1DWnjMSll2D6UjFLa6OX-KsEWLgd0uJtJ/view)
+  - ![Watch the Walkthorugh video](#https://drive.google.com/file/d/1DWnjMSll2D6UjFLa6OX-KsEWLgd0uJtJ/view?usp=sharing)
+
