@@ -59,4 +59,4 @@
 
   ## Links
 
-  - ![Watch the video](./assets/readme_generator_walkthrough.webm)
+  - ![Watch the Walkthorugh video](./assets/readme_generator_walkthrough.webm)
