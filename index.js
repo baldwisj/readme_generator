@@ -1,31 +1,20 @@
-// TODO: Include packages needed for this application
+// The following variables install packages or nessissary files to create the README
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
+//The following function creates the terminal prompts to collect the information to create a README
+function init () {
 inquirer.prompt([
     {
         type: 'input',
-        name: 'applicationTitle',
+        name: 'title',
         message: "Enter your Application's title",
     },
     {
-        type: 'checkbox',
-        name: 'tableOfContents',
-        message: "Select the sections for your table of contents",
-        choices: [
-          'Installation',
-          'Description',
-          'Usage',
-          'Contribution',
-          'Test',
-          'License',
-          'Questions'
-        ]
-      },
-    {
         type: 'input',
         name: 'description',
-        message: "Enter a Description of you application",
+        message: "Enter a Description of your application",
     },
     {
         type: 'input',
@@ -50,8 +39,8 @@ inquirer.prompt([
     {
         type: 'list',
         name: 'license',
-        message: "Select your applicaiton's license",
-        choices: ['license 1','license 2','ext..']
+        message: "Select your applicaiton's license, if you do not want a license select the empty string",
+        choices: ['','Apache 2.0','Boost Software 1.0','BSD 3-Clause','BSD 2-Clause','Elipse Public 1.0', 'GNU GPL v3', 'GNU GPL v2']
     },
     {
         type: 'input',
@@ -63,79 +52,31 @@ inquirer.prompt([
         name: 'email',
         message: "Please enter your email to be placed in the questions section",
     },
+    {
+        type: 'input',
+        name: 'links',
+        message: 'Enter any nessisary links, videos, or screenshots',
+    }
 ])
 
+//The following .then function pulls the markdown file and funs the collected data through it
+//then it calls the write to file function.
+.then(data => {
+const readmeTemplate = generateMarkdown(data) 
 
-.then(answers => {
-
-    //The following variable creates literal code that will be input into the readme file starting with just the appliocation title and the Table of Contents title
-    const readme = `# ${answers.applicationTitle}\n## Table of Contents\n`;
-    const contents = answers.tableOfContents
-
-        fs.writeFile('./README.md', readme, (err) =>
-      err ? console.log(err) : console.log('Success!')
-    );
-
-    //The folowing creates a table of contents section link that will be linked to each section
-    for (const section of contents) {
-        let secCont = `- [${section}](#${section})\n`
-        fs.appendFile('./README.md', secCont, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-    
-    if (contents.includes('Description')) {
-        let desc = `\n## Description\n${answers.description}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('Installation')) {
-        let desc = `\n## Installation\n${answers.installation}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('Usage')) {
-        let desc = `\n## Usage\n${answers.usage}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('Contribution')) {
-        let desc = `\n## Contribution\n${answers.contribution}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('Test')) {
-        let desc = `\n## Test\n${answers.test}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('License')) {
-        let desc = `\n## License\n- ${answers.gitName}\n- ${answers.email}`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    if (contents.includes('Questions')) {
-        let desc = `\n## Questions\n${answers.questions}\n`;
-        fs.appendFile('./README.md', desc, (err) =>
-        err ? console.log(err) : console.log('Success!'));
-    }
-
-    console.log(answers)
-   
-
-
+    writeToFile('./README.md', readmeTemplate)
 
 });
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
 
-// TODO: Create a function to initialize app
-// function init() {}
+};
+//The writeToFile function writes the file and in called in the above function with the data
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => 
+    (err) ? console.log((err)) : console.log('Success!! README Created!!')
+    )
+};
 
-// Function call to initialize app
-// init();
+
+// this initializes the promts
+init();
+
