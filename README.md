@@ -59,4 +59,4 @@
 
   ## Links
 
-  - ![Watch the Walkthorugh video](./assets/readme_generator_walkthrough.webm)
+  - ![Watch the Walkthorugh video](https://drive.google.com/file/d/1DWnjMSll2D6UjFLa6OX-KsEWLgd0uJtJ/preview)
