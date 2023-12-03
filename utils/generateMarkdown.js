@@ -70,7 +70,11 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   let licenseSection;
   const licenseLink = renderLicenseLink(license);
-  (licenseLink) ? licenseSection = `## License\n- License: ${license}\n-${licenseLink}` : licenseSection = ``;
+  (licenseLink) ? licenseSection = `
+  ## License\n
+  - License: ${license}\n
+  - ${licenseLink}\n` 
+  : licenseSection = ``;
 
   return licenseSection;
 }
@@ -84,14 +88,14 @@ function generateMarkdown(data) {
   ${licenseBadge}\n
   # ${data.title}\n
   ## Table of Contents\n
-  - Description(#Description)\n
-  - Installation(#Insallation)\n
-  - Usage(#Usage)\n
-  - License(#License)\n
-  - Contribution(#Contribution)\n
-  - Test(#Test)\n
-  - Questions(#Questions)\n
-  - Links(#Links)\n
+  - [Description](#description)\n
+  - [Installation](#installation)\n
+  - [Usage](#usage)\n
+  - [License](#license)\n
+  - [Contribution](#contribution)\n
+  - [Test](#test)\n
+  - [Questions](#questions)\n
+  - [Links](#links)\n
 
   ## Description\n
   ${data.description}\n
